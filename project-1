@@ -32,15 +32,17 @@ double fx_discriminant(double a, double b, double c)
     return discriminant;
 }
 
-double fx_imaginary_1(double a, double discriminant)
+//This is the complex root function for the square root if it computes a negative. 
+double fx_imaginary_1(double a, double b, double discriminant)
 {
     double imaginary_1;
 
-    imaginary_1 = (-1*discriminant)/(2*a);
+    imaginary_1 = sqrt(-1*discriminant)/(2*a);
 
     return imaginary_1;
 }
 
+//This is the complex root function for the first half of the quadratic formula applied with the above function. 
 double fx_imaginary_2(double a, double b)
 {
     double imaginary_2;
@@ -53,9 +55,10 @@ double fx_imaginary_2(double a, double b)
 
 int main(void)
 {
-    double a = 15;
-    double b = 27;
-    double c = 8;
+    //intial variables being defined
+    double a = 25;
+    double b = 15;
+    double c = 9;
 
 
 //Discriminant being calculated here.
@@ -63,22 +66,22 @@ int main(void)
     printf("discriminant equals %lf.\n", discriminant);
 
 
-    if (discriminant>0)
+    if (discriminant>0) //If the discriminant is positive this result will be displayed.
     {
         double fx = fx_minus(a, b, discriminant);
         double fx1 = fx_plus(a, b, discriminant);
         printf("x = %lf, x = %lf.\n", fx, fx1);
     }
 
-    else if (discriminant==0)
+    else if (discriminant==0) //If the discriminant is equal to 0 this result will be displayed. 
     {
         double fx2 = fx_plus(a, b, discriminant);
         printf("x = %lf.\n", fx2);
     }
 
-    else (discriminant<0)
+    else  //If the discriminant is negative this result will display, I continually got an error when I added in "(discriminant<0)" so I removed it and the else statement worked.
     {
-        printf("x = %lf+i*%lf, x = %lf-i*%lf\n", fx_imaginary_2 (a, b), fx_imaginary_1(a, discriminant), fx_imaginary_2(a, b), fx_imaginary_1(a, discriminant));
+        printf("x = %lf+i*%lf, x = %lf-i*%lf\n", fx_imaginary_2 (a, b), fx_imaginary_1(a, b, discriminant), fx_imaginary_2(a, b), fx_imaginary_1(a, b, discriminant));
     }
 
     return 0;
