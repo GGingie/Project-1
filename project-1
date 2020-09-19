@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+//The plus variable of the quadratic formula. 
+double fx_plus(double a, double b, double discriminant)
+{
+    double fx_plus;
+
+    fx_plus = ((-1*b)+sqrt(discriminant))/(2*a);
+
+    return fx_plus;
+}
+
+//The minus variable of the quadratic formula.
+double fx_minus(double a, double b, double discriminant)
+{
+    double fx_minus;
+
+    fx_minus = ((-1*b)-sqrt(discriminant))/(2*a);
+
+    return fx_minus;
+}
+
+//Discriminant function definition. 
+double fx_discriminant(double a, double b, double c)
+{   
+    double discriminant;
+
+    discriminant = (b*b)-(4*a*c); 
+
+    return discriminant;
+}
+
+double fx_imaginary_1(double a, double discriminant)
+{
+    double imaginary_1;
+
+    imaginary_1 = (-1*discriminant)/(2*a);
+
+    return imaginary_1;
+}
+
+double fx_imaginary_2(double a, double b)
+{
+    double imaginary_2;
+
+    imaginary_2 = (-1*b)/(2*a);
+
+    return imaginary_2;
+}
+
+
+int main(void)
+{
+    double a = 15;
+    double b = 27;
+    double c = 8;
+
+
+//Discriminant being calculated here.
+    double discriminant = fx_discriminant(a, b, c);
+    printf("discriminant equals %lf.\n", discriminant);
+
+
+    if (discriminant>0)
+    {
+        double fx = fx_minus(a, b, discriminant);
+        double fx1 = fx_plus(a, b, discriminant);
+        printf("x = %lf, x = %lf.\n", fx, fx1);
+    }
+
+    else if (discriminant==0)
+    {
+        double fx2 = fx_plus(a, b, discriminant);
+        printf("x = %lf.\n", fx2);
+    }
+
+    else (discriminant<0)
+    {
+        printf("x = %lf+i*%lf, x = %lf-i*%lf\n", fx_imaginary_2 (a, b), fx_imaginary_1(a, discriminant), fx_imaginary_2(a, b), fx_imaginary_1(a, discriminant));
+    }
+
+    return 0;
+
+}
